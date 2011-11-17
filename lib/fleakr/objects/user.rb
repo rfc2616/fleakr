@@ -91,6 +91,11 @@ module Fleakr
         with_caching(options, method_name) { send(method_name, options) }
       end
 
+      def not_in_set_photos( options={} )
+        options = authentication_options.merge( options )
+        with_caching( options, :photos_not_in_set ) { send( :photos_not_in_set, options ) }
+      end
+
       # Is this a pro account?
       def pro?
         (pro.to_i == 0) ? false : true
