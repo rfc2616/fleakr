@@ -60,6 +60,7 @@ module Fleakr
 
       association :private_photos, :type => :photo
       association :public_photos, :type => :photo
+      association :photos_not_in_set, :type => :photo
 
       find_one :by_username, :call => 'people.findByUsername'
       find_one :by_email, :using => :find_email, :call => 'people.findByEmail'
