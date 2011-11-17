@@ -59,7 +59,7 @@ module Fleakr
 
       find_all :public_photos_by_user_id, :call => 'people.getPublicPhotos', :path => 'photos/photo', :using => :user_id
       find_all :private_photos_by_user_id, :call => 'people.getPhotos', :path => 'photos/photo', :using => :user_id
-      find_all :photos_not_in_set, :call => 'photos.getNotInSet'
+      find_all :photos_not_in_set_by_user_id, :call => 'photos.getNotInSet'
 
       find_one :by_id, :using => :photo_id, :call => 'photos.getInfo'
 
