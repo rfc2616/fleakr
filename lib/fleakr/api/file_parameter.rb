@@ -31,7 +31,11 @@ module Fleakr
       # File data (from @filename) to pass to the Flickr API
       # 
       def value
-        @value ||= File.read(@filename)
+        if @filename.respond_to? 'preloaded_image_data'
+          @value ||= @filename.preloaded_image_data
+        else
+          @value ||= File.read(@filename)
+        end
       end
       
       # Generate a form representation of this file for upload (as multipart/form-data)
