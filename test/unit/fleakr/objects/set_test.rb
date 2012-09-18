@@ -13,6 +13,28 @@ module Fleakr::Objects
       should_find_all :sets, :by => :user_id, :call => 'photosets.getList', :path => 'rsp/photosets/photoset', :class => Set
       should_find_one :set, :by => :id, :with => :photoset_id, :call => 'photosets.getInfo', :path => 'rsp/photoset', :class => Set
 
+      context "when creating a new set" do
+        should "require a title" do
+          #TODO
+        end
+
+        should "require a primary photo id" do
+          #TODO
+        end
+
+        should "allow a description" do
+          #TODO
+        end
+
+        should "get an id" do
+          #TODO
+        end
+
+        should "get a url" do
+          #TODO
+        end
+      end
+
     end
 
     context "An instance of the Set class" do
@@ -188,6 +210,20 @@ module Fleakr::Objects
           lambda { @set.save_to(@tmp_dir, :large) }.should_not raise_error
         end
 
+      end
+
+      context "when adding a photo" do
+        should "require a photoset id" do
+          #TODO
+        end
+
+        should "require a photo id" do
+          #TODO
+        end
+
+        should "get back a success" do
+          #TODO
+        end
       end
 
     end
