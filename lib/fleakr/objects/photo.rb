@@ -33,7 +33,7 @@ module Fleakr
     class Photo
 
       # Available sizes for this photo
-      SIZES = [:square, :thumbnail, :small, :medium, :large, :original, :mobile_mp4, :site_mp4, :hd_mp4, :video_original]
+      SIZES = [:square, :large_square, :thumbnail, :small, :small_320, :medium, :medium_640, :medium_800, :large, :large_1600, :large_2048, :original, :mobile_mp4, :site_mp4, :hd_mp4, :video_original]
 
       include Fleakr::Support::Object
       extend Forwardable
