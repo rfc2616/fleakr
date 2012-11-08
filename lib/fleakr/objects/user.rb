@@ -60,6 +60,7 @@ module Fleakr
 
       association :private_photos, :type => :photo
       association :public_photos, :type => :photo
+      association :photos_not_in_set, :type => :photo
 
       find_one :by_username, :call => 'people.findByUsername'
       find_one :by_email, :using => :find_email, :call => 'people.findByEmail'
@@ -88,6 +89,11 @@ module Fleakr
         method_name = authenticated? ? :private_photos : :public_photos
 
         with_caching(options, method_name) { send(method_name, options) }
+      end
+
+      def not_in_set_photos( options={} )
+        options = authentication_options.merge( options )
+        with_caching( options, :photos_not_in_set ) { send( :photos_not_in_set, options ) }
       end
 
       # Is this a pro account?

@@ -33,7 +33,7 @@ module Fleakr
     class Photo
 
       # Available sizes for this photo
-      SIZES = [:square, :thumbnail, :small, :medium, :large, :original]
+      SIZES = [:square, :large_square, :thumbnail, :small, :small_320, :medium, :medium_640, :medium_800, :large, :large_1600, :large_2048, :original, :mobile_mp4, :site_mp4, :hd_mp4, :video_original]
 
       include Fleakr::Support::Object
       extend Forwardable
@@ -59,6 +59,7 @@ module Fleakr
 
       find_all :public_photos_by_user_id, :call => 'people.getPublicPhotos', :path => 'photos/photo', :using => :user_id
       find_all :private_photos_by_user_id, :call => 'people.getPhotos', :path => 'photos/photo', :using => :user_id
+      find_all :photos_not_in_set_by_user_id, :call => 'photos.getNotInSet', :path => 'photos/photo', :using => :user_id
 
       find_one :by_id, :using => :photo_id, :call => 'photos.getInfo'
 
@@ -154,7 +155,7 @@ module Fleakr
       private
       def images_by_size
         image_sizes = SIZES.inject({}) {|l,o| l.merge(o => nil)}
-        images.inject(image_sizes) {|l,o| l.merge!(o.size.downcase.to_sym => o) }
+        images.inject(image_sizes) {|l,o| l.merge!(o.size.downcase.gsub( " ", "_" ).to_sym => o) }
       end
 
     end

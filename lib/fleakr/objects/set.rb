@@ -84,6 +84,17 @@ module Fleakr
         populate_from(response.body)
       end
 
+      def self.create( options = {} )
+        response = Fleakr::Api::MethodRequest.with_response!( 'photosets.create', options )
+        photoset = Set.new( response.body )
+        Set.find_by_id( photoset.id )
+      end
+
+      def add_photo( options = {} )
+        options = options.merge( :photoset_id => id )
+        Fleakr::Api::MethodRequest.with_response!( 'photosets.addPhoto', options )
+      end
+
     end
   end
 end
